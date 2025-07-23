@@ -34,6 +34,9 @@ DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://web-production-4656.up.railway.app",
+]
 
 # Application definition
 
