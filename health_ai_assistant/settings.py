@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
-import os
+from urllib.parse import urlparse
 
 
 
@@ -34,9 +34,15 @@ DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://web-production-4656.up.railway.app",
-]
+# Dynamically set CSRF_TRUSTED_ORIGINS using Railway's domain
+RAILWAY_DOMAIN = os.getenv("RAILWAY_PUBLIC_DOMAIN")
+
+if RAILWAY_DOMAIN:
+    parsed = urlparse(f"https://{RAILWAY_DOMAIN}")
+    CSRF_TRUSTED_ORIGINS = [f"{parsed.scheme}://{parsed.netloc}"]
+else:
+    CSRF_TRUSTED_ORIGINS = []
+
 
 # Application definition
 
