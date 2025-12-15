@@ -57,7 +57,6 @@ INSTALLED_APPS = [
     'user_accounts.apps.UserAccountsConfig',
     'dashboard',
     'common',
-    'disease_prediction',
 ]
 
 MIDDLEWARE = [
